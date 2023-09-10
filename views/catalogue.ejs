@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Catalogue</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/catalogue.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Shadows+Into+Light&family=Special+Elite&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cabin&family=Lobster&family=Montserrat:ital,wght@1,100&family=Oswald:wght@300;400&family=Oxygen:wght@300;700&family=Prompt:wght@600&family=Quicksand:wght@300&family=Righteous&family=Secular+One&family=Tilt+Prism&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
+
+
+</head>
+
+<body style="background-color: black;">
+
+  <script>
+    function searchHandler() {
+      const query = document.getElementById("squery").value;
+
+      fetch(`http://localhost:8000/search?squery=${query}`, {
+        Method: 'POST',
+        Headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      }).then((res) => {
+        // console.log(res);
+        res.json().then((data) => {
+          console.log(data);
+
+          let str =  `<div class="beginner" style="margin-bottom: 1rem ">
+                        <div class="title-seeall">
+                          <div class="title">
+                            <h1 style="color: rgb(255, 255, 255); font-family: 'Bruno Ace', cursive;">SEARCH RESULTS</h1>
+                          </div>
+                          <div class="see-all">
+                            <button onclick="window.location.href = '/rockcoursedesc'" class="see-all-button">
+                              <div class="see-all-txt">See All</div>
+                              <img src="images/seemore.png">
+                            </button>
+                          </div>
+                        </div>
+                        
+                        <div class="row row-cols-1 row-cols-md-3 g-4 cards">`
+
+              for(i =0; i<data.length; i++){
+
+                let t2 =  `<div class="col card-pad">
+                <div class="card crd">
+                  <a href="coursedescpage/${data[i]._id}"> <img src= ${data[i].imageUrl} style="height: 197px; width: 347px ;" class="card-img-top" alt="..."></a>
+                  <div class="card-body">
+                    <h6 class="card-title limits">${data[i].title}</h6>
+                    <h6 class="card-title">By ${data[i].teacher[0].fullname} </h6>
+                  </div>
+                </div>
+              </div>`
+                  str = str + t2;
+               }
+              
+               str = str + `</div></div>`
+
+
+               document.getElementById("courses").innerHTML = "";
+               document.getElementById("courses").innerHTML = str;
+            })
+            
+          })
+          return false;
+        }
+  </script>
+
+  <% if (auth==true && role=="user" ) { %>
+    <%- include('login-header',{user:user}); %>
+      <%}%>
+
+        <% if (auth==true && role=="teacher" ) { %>
+          <%- include('teacher-header',{user:user}); %>
+            <%}%>
+
+
+
+
+              <% if(auth !=true){ %>
+                <%- include('header'); %>
+                  <%}%>
+
+                    <div class="head-slides">
+                      <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img src="images/carousel-1.jpg" class="d-block w-100" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="images/carousel-2.jpg" class="d-block w-100" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="images/carousel-3.jpg" class="d-block w-100" alt="...">
+                          </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                          data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                          data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
+                      </div>
+
+                    </div>
+
+
+                    <div class="video-part">
+                      <div class="our-team">
+                        <h1 class="our-team-header">GUITAR LESSONS</h1>
+                        <h1 class="our-team-header" style="color:rgb(194, 42, 42);">THAT REALLY WORK</h1>
+                        <p class="our-team-content">Learn guitar online with world-class instructors and</p>
+                        <p class="our-team-content">become the best guitar player you can be.</p>
+                      </div>
+                      <div class="video_box">
+                        <video id="home-video" src="images/catalogue-video.mp4" type="video/mp4" controls></video>
+                      </div>
+                    </div>
+
+
+
+                    <nav class="navbar" id="navbar-id" style="background-color: rgb(0, 0, 0);">
+
+                      <div class="container-fluid">
+                        <a class="navbar-brand" id="heading">OUR COURSES</a>
+                        <form class="d-flex" onsubmit="return searchHandler()">
+                          <input class="form-control me-2" id="squery" name="squery" type="search" placeholder="Search"
+                            aria-label="Search" value="">
+                          <button class="btn btn-outline-success" id="search-box" type="submit">Search</button>
+                        </form>
+                      </div>
+                    </nav>
+                    <br>
+
+                    <div class="rock" id="courses" style="margin-bottom: 3rem;">
+
+                      <div class="beginner" style="margin-bottom: 3rem;">
+                        <div class="title-seeall">
+                          <div class="title">
+                            <h1 style="color: rgb(255, 255, 255); font-family: 'Bruno Ace', cursive;">ROCK</h1>
+                          </div>
+                          <div class="see-all">
+                            <button onclick="window.location.href = '/rockcoursedesc'" class="see-all-button">
+                              <div class="see-all-txt">See All</div>
+                              <img src="images/seemore.png">
+                            </button>
+                          </div>
+                        </div>
+
+                        <div class="row row-cols-1 row-cols-md-3 g-4 cards">
+
+                          <% for (let i=0;i<rock.length;i++) { %>
+                            <div class="col card-pad">
+                              <div class="card crd">
+                                <a href="coursedescpage/<%= rock[i]._id %>"> <img src='<%= rock[i].imageUrl %>'
+                                    style="height: 197px; width: 347px ;" class="card-img-top" alt="..."></a>
+                                <div class="card-body">
+                                  <h6 class="card-title limits">
+                                    <%= rock[i].title %>
+                                  </h6>
+                                  <h6 class="card-title">By <%= rock[i].teacher[0].fullname%>
+                                  </h6>
+
+                                  <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+                                </div>
+                              </div>
+                            </div>
+                            <%}%>
+
+
+                              <!-- <div class="col card-pad">
+                  <div class="card crd">
+                    <a href="#"><img src="images/10-lead-chal.jpg" style="height: 197px; width: 347px ;" class="card-img-top" alt="..."></a>
+                    <div class="card-body">
+                      <h6 class="card-title">10 Day Lead guitar Challenge</h6>
+                      <h6 class="card-title">By Andy Gilmour</h6>
+                      
+               
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col card-pad">
+                    <div class="card crd">
+                      <a href="#"><img src="images/r-m-g.jpg" style="height: 197px; width: 347px ;" class="card-img-top" alt="..."></a>
+                      <div class="card-body">
+                        <h6 class="card-title">Rock and Metal guitar lessons</h6>
+                        <h6 class="card-title">By Justin Young</h6>
+                        
+                      </div>
+                    </div>
+                  </div> -->
+
+                        </div>
+
+                      </div>
+
+                      <div class="beginner">
+                        <div class="title-seeall">
+                          <div class="title">
+                            <h1 style="color: rgb(255, 255, 255) ; font-family: 'Bruno Ace', cursive;">METAL</h1>
+                          </div>
+                          <div class="see-all">
+                            <button class="see-all-button">
+                              <div class="see-all-txt">See All</div>
+                              <img src="">
+                            </button>
+                          </div>
+                        </div>
+
+                        <div class="row row-cols-1 row-cols-md-3 g-4 cards">
+
+                          <% for (let i=0;i<metal.length;i++){ %>
+                            <div class="col card-pad">
+                              <div class="card crd">
+                                <a href="coursedescpage/<%= metal[i]._id %>"><img src="<%= metal[i].imageUrl %>"
+                                    style="height: 197px; width: 347px ;" class="card-img-top" alt="..."></a>
+                                <div class="card-body">
+                                  <h6 class="card-title">
+                                    <%= metal[i].title %>
+                                  </h6>
+                                  <h6 class="card-title">By <%= metal[i].teacher[0].fullname%>
+                                  </h6>
+                                </div>
+                              </div>
+                            </div>
+                            <%}%>
+
+
+                        </div>
+                      </div>
+
+                      <br>
+
+                      <div class="beginner">
+                        <div class="title-seeall">
+                          <div class="title">
+                            <h1 style="color: rgb(255, 255, 255); font-family: 'Bruno Ace', cursive;">BLUES</h1>
+                          </div>
+                          <div class="see-all">
+                            <button onclick="window.location.href = '/beginnercoursedesc' " class="see-all-button">
+                              <div class="see-all-txt">See All</div>
+                              <img src="images/seemore.png">
+                            </button>
+                          </div>
+                        </div>
+
+                        <div class="row row-cols-1 row-cols-md-3 g-4 cards">
+                          <% for (let i=0;i<blues.length;i++){ %>
+                            <div class="col card-pad">
+                              <div class="card crd">
+                                <a href="/coursedescpage/<%= blues[i]._id %>"><img src="<%= blues[i].imageUrl %>"
+                                    style="height: 197px; width: 347px ;" class="card-img-top" alt="..."></a>
+                                <div class="card-body">
+                                  <h6 class="card-title">
+                                    <%= blues[i].title %>
+                                  </h6>
+                                  <h6 class="card-title">By <%= blues[i].teacher[0].fullname %>
+                                  </h6>
+                                </div>
+                              </div>
+                            </div>
+                            <%}%>
+
+                        </div>
+                      </div>
+
+                      <br>
+
+                      <div class="beginner">
+                        <div class="title-seeall">
+                          <div class="title">
+                            <h1 style="color: rgb(255, 255, 255); font-family: 'Bruno Ace', cursive;">UKULELE</h1>
+                          </div>
+                        </div>
+
+
+                        <div class="row row-cols-1 row-cols-md-3 g-4 cards">
+                          <% for (let i=0;i<ukulele.length;i++){ %>
+                            <div class="col card-pad">
+                              <div class="card crd">
+                                <a href="/coursedescpage/<%= ukulele[i]._id %>"><img src="<%= ukulele[i].imageUrl %>"
+                                    style="height: 197px; width: 347px ;" class="card-img-top" alt="..."></a>
+                                <div class="card-body">
+                                  <h6 class="card-title">
+                                    <%=ukulele[i].title %>
+                                  </h6>
+                                  <h6 class="card-title">By <%=ukulele[i].teacher[0].fullname%>
+                                  </h6>
+                                </div>
+                              </div>
+                            </div>
+
+                            <%}%>
+
+                        </div>
+                      </div>
+
+
+
+                      <div class="beginner">
+                        <div class="title-seeall">
+                          <div class="title">
+                            <h1 style="color: rgb(255, 255, 255); font-family: 'Bruno Ace', cursive;">MUSIC THEORY</h1>
+                          </div>
+                          <div class="see-all">
+                            <button onclick="window.location.href = '/beginnercoursedesc' " class="see-all-button">
+                              <div class="see-all-txt">See All</div>
+                              <img src="images/seemore.png">
+                            </button>
+                          </div>
+                        </div>
+                        <div class="row row-cols-1 row-cols-md-3 g-4 cards">
+                          <div class="col card-pad">
+                            <div class="card crd">
+                              <a href="/coursedescpage"><img src="images/mt-andy.jpg"
+                                  style="height: 197px; width: 347px ;" class="card-img-top" alt="..."></a>
+                              <div class="card-body">
+                                <h6 class="card-title">Music Theory</h6>
+                                <h6 class="card-title">By Andy Gilmour</h6>
+                              </div>
+                            </div>
+                          </div>
+
+
+                        </div>
+                      </div>
+
+
+                      <div class="beginner">
+                        <div class="title-seeall">
+                          <div class="title">
+                            <h1 style="color: rgb(255, 255, 255); font-family: 'Bruno Ace', cursive;">GEAR CARE</h1>
+                          </div>
+                          <div class="see-all">
+                            <button onclick="window.location.href = '/beginnercoursedesc' " class="see-all-button">
+                              <div class="see-all-txt">See All</div>
+                              <img src="images/seemore.png">
+                            </button>
+                          </div>
+                        </div>
+                        <div class="row row-cols-1 row-cols-md-3 g-4 cards">
+                          <div class="col card-pad">
+                            <div class="card crd">
+                              <a href="/coursedescpage"><img src="images/gear-andy.jpg"
+                                  style="height: 197px; width: 347px ;" class="card-img-top" alt="..."></a>
+                              <div class="card-body">
+                                <h6 class="card-title">Guitars, Amps And Pedals</h6>
+                                <h6 class="card-title">By Andy Gilmour</h6>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col card-pad">
+                            <div class="card crd">
+                              <a href="#"><img src="images/gear-justin.jpg" class="card-img-top"
+                                  style="height: 197px; width: 347px ;" alt="..."></a>
+                              <div class="card-body">
+                                <h6 class="card-title">Set up your electric guitar</h6>
+                                <h6 class="card-title">By Justin Young</h6>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+                    </div>
+
+
+
+
+
+                    <div class="song-lesson-vid">
+                      <div class="our-team-header" style="color: black; text-align:center; padding:5px;">SONG LESSONS
+                      </div>
+                      <div class="s-l-vid">
+                        <center>
+                          <video style="height: 500px; width:900px;" id="home-video" src="images/song-lesson-vid.mp4"
+                            type="video/mp4" controls></video>
+                        </center>
+                      </div>
+                    </div>
+
+
+
+                    <div class="song-lessons">
+                      <h1 class="our-team-header">ANATOMY OF SONG LESSONS</h1>
+                      <img src="images/song-lesson-pic.png" style="height: 800px; width:1500px; padding:10px;">
+                    </div>
+
+
+                    <br>
+                    <br>
+
+                    <%- include('footer'); -%>
+
+
+
+                      <script src="" async defer></script>
+                      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+                        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+                        crossorigin="anonymous"></script>
+                      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+                        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+                        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

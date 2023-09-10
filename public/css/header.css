@@ -1,0 +1,146 @@
+
+.upper-head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    background-image: url(../images/preheaderbg.jpg);
+}
+
+.preheader-text{
+    padding-top: 13px;
+    text-align: right;
+    color:  #00fff2a8 ;
+    margin-right: 30px;
+    font-size: 17px;
+    font-family: 'Bruno Ace', cursive;
+    text-shadow: 10px 10px 25px #00fff2;
+    transition: .3s ease;
+    cursor: text;
+
+}
+
+.preheader-text:hover{
+    transform: scale(1.05);
+}
+
+.specific header{
+    background-color: black;
+}
+
+.specific .navbar {
+    margin-bottom: 50px;
+    color: rgba(0, 0, 35, 0.84);
+
+}
+
+.specific .navbar ul {
+
+
+}
+
+.specific .navbar li {
+    margin: 15px 20px;
+    float: right;
+    list-style: none;
+}
+
+
+
+
+.icon:hover {
+    background-image: url(../images/guitariconnav3.png);
+    transform:scale(1.1);
+}
+
+
+.specific .navbar li a {
+    font-size: 12px;
+    color: rgba(211, 211, 214, 0.856);
+    padding: 5px 5px;
+    font-family: 'Bruno Ace', cursive;
+    text-decoration: none;
+    transition: .3s ease;
+    cursor: pointer;
+}
+
+.specific .navbar li a:hover {
+    color: rgba(118, 211, 232, 0.864);
+    font-size: 13px;
+    /* background-color: rgba(0, 0, 0, 0.471); */
+    border-radius: 15px;
+    transform:scale(1.1);
+    /* font-family: 'Tilt Prism', cursive; */
+
+}
+
+.title {
+
+    /* text-shadow: -1px 1px 0 #0a6cddae,
+                          1px 1px 0 #0a6cddae,
+                         1px -1px 0 #0a6cddae,
+                        -1px -1px 0 #0a6cddae; */
+                        color: rgba(254, 57, 57, 0.967);
+                        padding: 5px;
+                        margin: 5px;
+                        /* margin-left: 1000px; */
+                        font-family: 'Bruno Ace', cursive;
+                        text-shadow: 10px 10px 25px #ffffff7b;
+                        font-size: 47px;
+                        font-style: normal;
+                        font-variant: normal;
+                        line-height: 44px;
+
+
+}
+
+button{
+    background-color: black;
+    border-style: none;
+}
+
+
+.dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+   display: none;
+    position: absolute;
+    right: 0;
+    background-color: #000000;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #000000;}
+  .dropdown:hover .dropdown-content {display: block;}
+  .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+/* 
+  .prof-icon{
+    
+  } */
+
+  .prof-icon:hover{
+    transition: 0.3s;
+    transform: rotateX(180deg);
+  }

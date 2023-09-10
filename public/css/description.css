@@ -1,0 +1,32 @@
+
+
+.desc-title{
+  font-weight: bolder;
+  font-style: normal;
+}
+
+
+
+
+  p{
+    font-size:20px ;
+
+  }
+
+  .center{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+  }
+
+  .content{
+    padding: 10px;
+    background-color: black;
+color: white;
+    font-family: 'Quicksand', sans-serif;
+    
+  }
+
+  

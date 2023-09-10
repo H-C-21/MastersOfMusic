@@ -1,0 +1,158 @@
+
+
+
+head-slides{
+    margin-bottom: 20px;
+}
+
+.video_box{
+    /* background-color: black; */
+}
+.video-part{
+    background-color: #4076c1a8;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+#home-video{
+
+     width:480px;  
+     height: 560px; 
+     /* padding: 20px;  */
+ 
+}
+
+.our-team{
+    
+    display: inline-block;
+    /* text-align: center; */
+    margin-top: 120px;
+    font-family: 'Archivo Black', sans-serif;
+    /* padding: 20px; */
+}
+
+
+
+.our-team-header{
+    font-size: 30px;
+    color: white;
+    font-weight: bolder;
+}
+
+.limits{
+        padding: 0px 1.4rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      
+}
+.our-team-content{
+    font-weight: lighter;
+    color: white;
+    font-size: 18px;
+}
+
+
+.courses{
+    background-color: rgb(34, 34, 34);
+    padding-bottom: 10px;
+    /* margin-left: 20px; */
+}
+
+.beginner{
+    margin-left: 20px;
+}
+
+
+#heading{
+    color: white;
+    font-family: 'Bruno Ace', cursive;
+}
+
+#search-box{
+    font-size: 13px;
+    border-radius: 5px;
+    font-family: 'Bruno Ace', cursive;
+    color: aqua;
+}
+
+#navbar-id{
+    background-color: rgba(0, 0, 0, 0.411);
+}
+
+.see-all{
+    padding-top: 25px;
+    padding-right: 20px;
+}
+.title-seeall{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.see-all-txt{
+    color:rgb(255, 255, 255);
+    font-family: 'Quicksand', sans-serif;
+}
+
+.see-all-button{
+    background-color: rgb(34, 34, 34);
+    color: white;
+    border: 0px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+h1{
+    /* font-family: 'Quicksand', sans-serif; */
+    padding: 15px;
+    padding-top: 25px;
+}
+
+
+
+
+.crd{
+    width: 350px;
+    height: 300px;
+}
+
+
+h6{
+    font-family: 'Quicksand', sans-serif;
+    padding-left: 5px;
+    transition: .3s ease;
+    cursor: pointer;
+    text-align: center;
+}
+
+h6:hover{
+    transform:scale(1.05);
+}
+
+.card-pad{
+    padding: 0px;
+}
+
+hr{
+    color: ghostwhite;
+}
+
+.song-lesson-vid{
+    padding: 20px;
+    justify-content:center ;
+    background-color: white;
+    align-items: center;
+}
+
+
+.s-l-vid{
+    margin: 10px;
+    justify-content: center
+}
+.song-lessons{
+    background-color: #2b5476bf;
+}
+

@@ -1,0 +1,109 @@
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+.item{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.instruct {
+    text-align: center;
+    font-size: 20px;
+    padding-top: 25px;
+    padding-bottom: 5px;
+    color: rgba(211, 211, 214, 0.856);
+    font-family: 'Bruno Ace', cursive;
+}
+
+.info{
+    width: 60%;
+}
+
+.line{
+    display: block;
+    border-top: 1px solid white;
+    width: 100%;
+}
+
+.name
+{
+    text-align: center;
+    font-size: 30px;
+    padding-top: 25px;
+    padding-bottom: 5px;
+    color: rgba(211, 211, 214, 0.856);
+    font-family: 'Bruno Ace', cursive;
+}
+
+.about-info{
+    padding-left: 10px;
+   font-size: large;
+    margin: auto;
+    color: rgba(211, 211, 214, 0.856);
+    width: 70%;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.about{
+    margin-left: -20px;
+    text-align: center;
+    font-size: 28px;
+    color: rgba(211, 211, 214, 0.856);
+    font-family: 'Bruno Ace', cursive;
+}
+
+.list-item{
+    padding: 20px;
+}
+
+
+
+.video_box{
+    /* background-color: black; */
+    margin-top: 40px;
+}
+.video-part{
+    margin-bottom: 15px;
+    background-color: #4c535dc2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+#home-video{
+
+     /* width:700px;  
+     height: 800px;  */
+     /* padding: 20px;  */
+ 
+}
+
+.our-team{
+    
+    /* display: inline-block; */
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    font-family: 'Archivo Black', sans-serif;
+    /* padding: 20px; */
+}
+
+
+
+.our-team-header{
+    font-size: 50px;
+    color: white;
+    font-weight: bolder;
+}
+
+.our-team-content{
+    font-family: 'Quicksand', sans-serif;
+    font-weight: lighter;
+    color: white;
+    font-size: 18px;
+}

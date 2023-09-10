@@ -1,0 +1,21 @@
+{
+  "name": "fsd-project",
+  "version": "1.0.0",
+  "description": "Masters of Music is a music learning website where users can access courses and enhance their music skills by video lectures and quizzes.",
+  "main": "homepage.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "mongoose": "^7.0.3",
+    "node": "^19.8.1",
+    "nodemon": "^2.0.22",
+    "sqlite3": "^5.1.6"
+  }
+}

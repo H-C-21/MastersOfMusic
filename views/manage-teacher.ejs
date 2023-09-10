@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/css/manage-c.css">
+
+        <link href="https://fonts.googleapis.com/css2?family=Cabin&family=Lobster&family=Montserrat:ital,wght@1,100&family=Oswald:wght@300;400&family=Oxygen:wght@300;700&family=Prompt:wght@600&family=Quicksand:wght@300&family=Righteous&family=Secular+One&family=Tilt+Prism&display=swap" rel="stylesheet">
+   
+    </head>
+    <body style="background-color: black;">
+        <%- include('header'); -%>
+
+        <% teachers.forEach(function(user) { %>
+            <div class="message">
+                <center>
+                    <p>------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+                    <div class="fname">
+                    Name: <%=user.username %>
+                </div>
+    
+                <div class="lname">
+                    contact No.: <%=user.phone %>
+                </div>
+    
+                <div class="email">
+                    E-mail: <%=user.email %>
+                </div>
+    
+                <div class="msg">
+                    
+                </div>
+                <button class="home-login-button" onclick="window.location.href= `/manage-user/teachers/<%= user._id %>`"><div class="button-content">Delete teacher</div></button>
+                <p>------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+    
+            </center>
+    
+            </div>
+            <% }); %>
+
+        </div>
+
+        <%- include('footer'); -%>
+        <script src="" async defer></script>
+    </body>
+</html>
+

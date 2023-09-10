@@ -1,0 +1,32 @@
+.message{
+    color: white;
+    font-size: 25px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.home-login-button {
+    background-color: #035bc8;
+    /* color: rgb(0, 0, 0); */
+    color: white;
+    border-radius: 30px;
+     margin-right: 20px;
+    font-size: 15px;
+    font-family: 'Righteous', cursive;
+    font-weight: bold;
+    font-family: 'Varela Round', sans-serif;
+    transition: .3s ease;
+    cursor: pointer;
+}
+
+.button-content{
+    padding: 5px;
+    /* background-color: #af0000; */
+    color: white;
+}
+
+.home-login-button:hover {
+    transform:scale(1.02);
+    background-color: #01ffeac5;
+    /* font-size: 16px; */
+
+}

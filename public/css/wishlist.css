@@ -1,0 +1,279 @@
+
+
+.bodyMain{
+margin: 0;
+padding: 0;
+color: rgb(211, 207, 202);
+font-size: 14px;
+background-color: #0f0707;;
+line-height: 1.4;
+border-color: #736b5e;
+}
+
+.maincontainer{
+margin: 0 auto;
+max-width: 1360px;
+margin-top: 0.8rem;
+
+}
+.icn{
+    position: relative;
+    bottom: 180px;
+    left: 180px;
+}
+.outer3{
+    height: 100%;
+    
+}
+
+.wishmain{
+    flex-direction: row;
+    margin: 0 auto;
+    padding: 0;
+    
+    max-width: 1204px;
+  border-radius: 26px;
+}
+
+
+.rightpanel{
+    width: 76%;
+    min-width: 820px;
+    background-color: #0f0707;
+    border: none;
+}
+
+.spaceline{
+    background-color: #0f0707;
+    width: 2%;
+}
+.leftmenu{
+    display: flex;
+    flex-direction: column;
+}
+
+.blackblock{
+    background-color: #0f0707;
+    height: fit-content;
+}
+.rhead{
+padding: 12px 30px;
+min-width: 480px;
+font-size: 17px;
+font-weight: 500;
+border-radius: 0.6rem;
+border: 2px solid #e0e0e0;
+background-color: #181a1b;
+margin-bottom: 1.6rem;
+}
+
+.wishblock{
+    padding: 16px 0px 16px 24px;
+    display: flex;
+    flex-direction: row;
+    min-width: 480px;
+    border-radius: 1rem;
+    height: 180px;
+    background-color: #181a1b;
+    margin-bottom: 1.2rem;
+}
+
+.wishitemleft{
+    padding-left: 24px;
+}
+
+.imgcontainer{
+    width: 230px;
+    min-width: 230px;
+    height: 150px;
+}
+
+
+.title2{
+          font-size: 20px;
+          font-weight: 300;
+          white-space: nowrap;
+}
+
+.nothinginwish{
+    font-size:xx-large;
+    color: rgb(192, 186, 178);
+    display: flex;
+    align-self: center;
+    padding: 3rem;
+    margin-top: 3rem;
+
+}
+.teacher{
+    font-size: 14px;
+    opacity: 0.7;
+    
+}
+.title2:hover {
+    color: #2874f0;
+    cursor: pointer;
+  }
+
+  .rate {
+    float: left;
+    height: 26px;
+   
+}
+.atb a{
+
+    color: inherit;
+    text-decoration: inherit;
+    transition: ease-in;
+    
+}
+.atb a:hover{
+ color: #2262c8;
+ font-size: 17px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+   
+    font-size:20px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+
+
+.rating p{
+    display: inline-block;
+    margin-bottom: 8px;
+    margin-top: 0px;
+    font-size: 14px;
+}
+.rightitembar{
+    margin-right: 4rem;
+    margin-left: auto;
+    align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.buy-now {
+    background-color: #000000;
+    border: 1px solid;
+    border-radius: .75rem;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    padding: .75rem 1.2rem;
+    text-align: center;
+    text-decoration: none #6B7280 solid;
+    transition-duration: .2s;
+    transition-property: background-color,border-color,color,fill,stroke;
+    
+    touch-action: manipulation;
+    width: auto;
+    position: relative;
+    display: inline-block;
+    alignalitems: flex-end;
+    margin-top: auto;
+  }
+
+  
+  .buy-now:hover {
+    background-color: #374151;
+  }
+  
+  .buy-now:focus {
+    box-shadow: none;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+  
+  @media (min-width: 768px) {
+    .button-40 {
+      padding: .75rem 1.5rem;
+    }
+  }
+
+.price{
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+
+.buy-now{
+     position: relative;
+     display: inline-block;
+     
+}
+
+
+.add-to-cart {
+    position: relative;
+    display: inline-block;
+    border: none;
+    border-radius: 0;
+    padding: 1.25rem 2.5rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transform: translateZ(0);
+    transition: color 0.3s ease;
+    letter-spacing: 0.0625rem;
+    
+}
+
+.courselink{
+    color: white; 
+    text-decoration: none;
+}
+
+.courselink:hover{
+    color: #2874f0;
+    transform: scale(1.09);
+}
+
+.delicon{
+    display: inline-block;
+    width: 20px;
+    align-items: center;
+    align-self: center;
+    margin-top: 10px;
+    align-self: end;
+    margin-left: 2.2rem;
+    scale: 1.5;
+    
+}
+.delicon:hover{
+    scale: 1.8;
+    cursor: pointer;
+}
+
+.userpic{ 
+    border-radius: 200px;
+    width: 100px;
+    height: 100px;
+    border: 2px solid black;
+    background-image: url("https://bootdey.com/img/Content/avatar/avatar1.png");
+    background-size: 100px 100px;
+    position: absolute;
+    top: 110px;
+    left: 8px;
+}
+
+
+.proftitle2{
+    justify-self: right;
+    position:relative;
+    left: 100px;
+    bottom: -1px;
+    font-size: 1.0rem;
+    color: white;
+    font-weight: 600;
+    display: inline-grid;
+}
+

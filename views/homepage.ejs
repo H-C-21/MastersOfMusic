@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> Welcome to Master of Musics!</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/homepage.js"></script>
+    <link rel="stylesheet" href="/css/homestyle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin&family=Lobster&family=Montserrat:ital,wght@1,100&family=Oswald:wght@300;400&family=Oxygen:wght@300;700&family=Prompt:wght@600&family=Quicksand:wght@300&family=Righteous&family=Secular+One&family=Tilt+Prism&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Butcherman+Caps" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Luckiest+Guy" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Walter+Turncoat" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Special+Elite&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="body-bg">
+    
+
+    <div class="bg">
+        
+        <% if (auth == true) { %>
+            <%- include('home-header-login',{user:user}); %>
+         <%}%>
+   
+            <% if(auth != true){ %>
+            <%- include('homeheader'); %>
+   <%}%>
+
+        
+    </div>
+
+    <div class="video-part">
+        <div class="our-team">
+            <h1 class="our-team-header">OUR TEAM</h1>
+            <p class="our-team-content">We have music instructors from the best institutes</p>
+            <p class="our-team-content">of music. Heavy metal like Metallica, Megadeth, Black Sabbath</p>
+            <p class="our-team-content">Hard Rock like AC/DC and Guns-and-Roses, Classy Blues like </p>
+            <p class="our-team-content">Pink Floyd and The Beatles, Jimi Hendrix's blues chords,</p>
+            <p class="our-team-content">core music theory, Amplifier settings, guitar tone, guitar maintenance</p>
+            <p class="our-team-content">you name it, we have it. Have a look at our instructors below!</p>
+            <button onclick="window.location.href = '/instructor' " class = "home-login-button"><div class="button-content" id="instructor-button">OUR INSTRUCTORS</div></button>
+        </div>
+        <div class = "video_box">
+            <video poster="images/logo.jpg" id="home-video" src="images/homevideo.mp4" type="video/mp4" controls></video>
+        </div>
+    </div>
+
+    <div class="course-heading">SOME OF OUR COURSES</div>
+    <div class="container text-center" style="color: aliceblue;">
+        <div class="row" id="col1">
+            <div class="col" >
+                <a href="/beginnercoursedesc"><img src="/images/beginnerpic.jpg" style="width: 360px; height: 180px;" class="grid-element"></a>
+            </div>
+            <div class="col" >
+                <a href="/rockcoursedesc"><img src="/images/course_rock.jpg" style="width: 360px; height: 180px;" class="grid-element"></a>
+            </div>
+            <div class="col" >
+                <a href="#"><img src="/images/metalpic.jpg" style="width: 360px; height: 180px;" class="grid-element"></a>
+            </div>
+        </div>
+
+        <div class="row" id="col1">
+            <div class="col" >
+                <a href="#"><img src="/images/bluespic.jpg" style="width: 360px; height: 180px;" class="grid-element"></a>
+            </div>
+            <div class="col" >
+                <a href="#"><img src="/images/acousticpic.jpg" style="width: 360px; height: 180px;" class="grid-element"></a>
+            </div>
+            <div class="col" >
+                <a href="#"><img src="/images/musictheorypic.jpg" style="width: 360px; height: 180px;" class="grid-element"></a>
+            </div>
+        </div>
+
+        <div class="row" id="col1">
+            <div class="col" >
+                <a href="#"><img src="/images/guitartone.jpg" style="width: 360px; height: 180px;" class="grid-element"></a>
+            </div>
+            <div class="col" >
+                <a href="#"><img src="/images/legendstyles.jpg" style="width: 360px; height: 180px;" class="grid-element"></a>
+            </div>
+            <div class="col" >
+                <a href="#"><img src="/images/guitartechnique.jpg" style="width: 360px; height: 180px;" class="grid-element"></a>
+            </div>
+        </div>
+    </div>
+    <div class="more-courses"> Find more courses at
+        <button onclick="window.location.href='/catalogue'" class="home-login-button"><div class="button-content">CATALOGUE</div></button>
+    </div>
+
+    <div class = "full_trial_box">
+        <div class="trial-box">
+            <div class="text">
+                <h1>
+                    START YOUR FREE TRIAL TODAY!
+                </h1>
+                <h3>
+                    Step by step instructions here!
+                </h3>
+            </div>
+            <div class="trial-button">
+                <button onclick="window.location.href = '/admin-profile' " class="button-trial"><div class="button-content">Only Rs.500.00 / month</div></button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="pre-footer">
+        <p>"Music Lessons that are second to none. This website boosted my music skills"</p>
+        <p>Practice and the right guidance is all it takes.</p>
+    </div>
+
+    <div>
+        <pre>
+
+        </pre>
+    </div>
+
+    <div>
+        <footer class="footer">
+            <div class="another">
+                <div class="answer">
+                    <div class="footer-column">
+                        <h4>company</h4>
+                        <ul>
+                            <li><a href="/aboutus">about us</a></li>
+                            <li><a href="/description">our services</a></li>
+                            <li><a href="/privacy">privacy policy</a></li>
+                            <li><a href="freelessons">affiliate program</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>get help</h4>
+                        <ul>
+                            <li><a href="/faq">FAQ</a></li>
+                            <li><a href="#">Terms and Conditions</a></li>
+                            <li><a href="/privacy">Privacy Policy </a></li>
+                            <li><a href="/contactus">Contact us</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Upcoming Services</h4>
+                        <ul>
+                            <li><a href="#">Guitars</a></li>
+                            <li><a href="#">Basses</a></li>
+                            <li><a href="#">Merchandise</a></li>
+                            <li><a href="#">Stickers</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Connect Us </h4>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+        crossorigin="anonymous"></script>
+
+    <script src="" async defer></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+#col1{
+    padding: 10px;
+}
+
+
+.video_box{
+    /* background-color: black; */
+}
+.video-part{
+    background-color: #4c535dc2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+#home-video{
+
+     /* width:700px;  
+     height: 800px;  */
+     /* padding: 20px;  */
+ 
+}
+
+.our-team{
+    
+    /* display: inline-block; */
+    text-align: center;
+    margin-top: 80px;
+    font-family: 'Archivo Black', sans-serif;
+    /* padding: 20px; */
+}
+
+
+
+.our-team-header{
+    font-size: 50px;
+    color: white;
+    font-weight: bolder;
+}
+
+.our-team-content{
+    font-family: 'Quicksand', sans-serif;
+    font-weight: lighter;
+    color: white;
+    font-size: 18px;
+}
+
+
+
+.img-size{
+    height: 150px;
+    width: 600px;
+}
+
+.card-bg{
+    background-color: #2f3256;
+}
+
+
+.course-heading{
+    color: white;
+    font-weight: bolder;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 30px;
+    padding: 20px;
+    margin-left: 135px;
+
+}
+
+.inst-grid{
+    font-family: 'Quicksand', sans-serif;
+   
+}
+
+.card-prop{
+    /* padding: 10px; */
+    margin: 10px;
+    background-color: rgba(53, 53, 53, 0.777);
+}
+
+
+#home-video{
+
+    width:480px;  
+    height: 560px; 
+    /* padding: 20px;  */
+
+}

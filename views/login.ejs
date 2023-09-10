@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/register.css">
+    <title>Login</title>
+</head>
+
+<body style="background-color:black;">
+
+    
+    <%- include('header'); -%>
+
+    <div class="bg-pic">
+    <div class="container register mb-5">
+        <div class="row">
+
+            <div class="col-md-8 register-left">
+
+
+                <h3 class="register-heading"> Login </h3>
+
+                <form type="submit" onsubmit="return validateForm()" action="/login" method="POST">
+                    <div class="row register-form">
+                        <div class="col-md-12">
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Enter User Name *" value=""
+                                    name="name" id="username"/>
+                                <% if (error) { %>
+                                    <div class=" form-control text-danger mt-2">
+                                        Your Details doesn't match
+                                    </div>
+                                    <% } %>
+                            </div>
+
+                            <div class="form-group">
+                                <select class="form-select form-control" aria-label="Default select example" name="role"
+                                    required>
+                                    <!-- <option>Open this menu for selecting a role </option> -->
+                                    <option value="user">User</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="instructor">Teacher</option>
+
+
+                                </select>
+
+                            </div>
+                            <div class="form-group">
+                                <input type="password" minlength="4" maxlength="10" name="password" class="form-control"
+                                    placeholder="Enter Password" value="" id="password" />
+                            </div>
+
+
+
+
+                            <div>
+                                <button type="submit" class="btnRegister reg-button" id="btn">Login</button>
+                                <a href="forgotPassword" class="down">forgot Password</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+            <div class="col-md-4 register container-2">
+                <img src="/images/signup1.jpg" class="icon-2" alt="image" />
+                <div class="centered">
+                    <div>Welcome Back!</div>
+                <div>Login to</div>
+                <div>Continue</div>
+                </div>
+                
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="/js/Login.js"></script>
+    <script src="/js/animation.js"></script>
+    <%- include('footer'); -%>
+</body>
+
+</html>
