@@ -265,25 +265,22 @@ app.post("/remove-wishlist/:Id",async (req,res)=>{
             else{
                 doc = req.session.user
                 let wishlist = doc.wishlist
-                console.log(wishlist)
-                console.log(purchased_course._id)
                 
                     let index = wishlist.indexOf(purchased_course._id);
                     wl1 = wishlist.splice(index, 1);
                     
                     userSchema.findByIdAndUpdate(doc._id,{wishlist:wishlist},{new:true}).then(()=>{
-                    console.log("Removed From Wishlist")
-
+                   
                     userSchema.findOne({username : doc.username}).then(user =>  {
                         user.populate({
                             path: 'wishlist',
                             populate:{
                                 path: 'teacher'
                             }
-                        }).then(()=>{
-                            
-                        res.redirect('/wishlist')
-                    })})
+                        }).then(()=>{                           
+                            return res.json({message:"Removed From Wishlist", status: 201})
+                    })
+                })
                     
                     
                 })

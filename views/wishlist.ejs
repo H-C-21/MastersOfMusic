@@ -7,12 +7,67 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css'>    
     <link rel = "stylesheet" href = "/css/wishlist.css">
-    <script src = "/js/script.js"></script>
+  
+    <!-- <script src = "/js/script.js"></script> -->
  
     <title>Wishlist</title>
+    <script>
+      let currcount = '<%= user.wishlist.length %>'
+
+      function deleteHandler(id,title){
+        // event.preventDefault();
+        console.log(id)
+        fetch(`/remove-wishlist/${id}`,{
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        }).then((res) => {
+          return res.json();
+        }).then((data) => {
+          currcount--;
+          document.getElementById(id).remove();
+          document.getElementById('wishlist-count').innerHTML = `Your Wishlist (${currcount})`
+          if(currcount == 0){
+            document.getElementById('empty-cart').removeAttribute('hidden');
+          }
+
+          const toastContainer = document.querySelector('.toast-container');
+          const toast = document.querySelector('.toast');
+          const newToast = toast.cloneNode(true);
+          newToast.querySelector('.toast-body').innerHTML = `${title} Removed from Wishlist!`; 
+          toastContainer.appendChild(newToast); 
+          const bsToast = new bootstrap.Toast(newToast); 
+          bsToast.show(); // Show the toast
+          setTimeout(() => {
+            bsToast.hide();
+          }, 2500);
+
+        }).catch((err) => {
+          console.log(err);
+        })
+        
+      }
+    </script>
 </head>
 <body style="background-color: #0f0707;">
+  
   <%- include('login-header'); -%>
+
+  <div class="toast-container position-fixed top-0 end-0 p-3">
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">Masters Of Music</strong>
+       
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Course removed from wishlist!
+      </div>
+    </div>
+    
+  </div>
+
  <div class="bodyMain">
     <div class="outer3">
     <div>
@@ -52,13 +107,13 @@
                     <div class="rightcont">
                         <div class="rightmain d-flex flex-column">
                             <div class="rhead">
-                               <div class=""> Your Wishlist (<%=user.wishlist.length %>)</div>
+                               <div class="" id="wishlist-count"> Your Wishlist (<%=user.wishlist.length %>)</div>
                             </div>
                           
                           
 
                             <% for (let i = 0;i<user.wishlist.length;i++){ %>
-                              <div class="wishblock">
+                              <div class="wishblock" id='<%= user.wishlist[i]._id %>'>
                                 <div class="imgcontainer">
                                     <img src = <%=user.wishlist[i].imageUrl %>  class = "course-img img-fluid"
                                     width="230px">
@@ -94,9 +149,10 @@
 
                                 <div class="rightitembar">
                                   
-                                    <form id="del" method="POST" action="/remove-wishlist/<%= user.wishlist[i]._id %>">
+                                    <form id="del" onsubmit="return deleteHandler()">
                                     <input type="hidden" name="del-item">
-                                    <div onclick="document.getElementById('del').submit();" style="padding-left: 2rem;">
+                                 
+                                    <div onclick="deleteHandler('<%= user.wishlist[i]._id %>','<%= user.wishlist[i].title %>')"  style="padding-left: 2rem;">
                                       <i class="bi bi-trash delicon" id = 'delete1'></i></div>
                                     </form>
                                     
@@ -108,10 +164,8 @@
                             <%}%>
 
 
-                            <% if (user.wishlist.length === 0){ %>
-                            <div class = "nothinginwish">Your Wishlist is Empty!</div>
+                            <div class = "nothinginwish" hidden id="empty-cart">Your Wishlist is Empty!</div>
                             
-                            <%}%>
                             
 
               
@@ -129,11 +183,20 @@
 
     
     <%- include('footer'); -%>
-
     
+    
+
+    <script>
+      let currcoun2 = '<%= user.wishlist.length %>'
+      if(currcoun2 == 0){
+        document.getElementById('empty-cart').removeAttribute('hidden');
+      }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     
   </div>
 </body>
