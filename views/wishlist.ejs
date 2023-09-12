@@ -15,7 +15,7 @@
       let currcount = '<%= user.wishlist.length %>'
 
       function deleteHandler(id,title){
-        // event.preventDefault();
+        // event.preventDefault(); here is the way
         console.log(id)
         fetch(`/remove-wishlist/${id}`,{
           method: 'POST',
