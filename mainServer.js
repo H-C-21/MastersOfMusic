@@ -20,7 +20,6 @@ const user = require('./models/user.js');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'));
-app.use(express.json());
 
 
 
@@ -82,7 +81,7 @@ app.get('/register', (req, res) => {
     res.render("homepage", {user:req.session.user,auth:true});
     }
     else{
-        res.render("register", { user: null, error: null,auth:false });
+        res.render("Register", { user: null, error: null,auth:false });
     }
     
 
@@ -92,6 +91,7 @@ app.get('/hhh', (req,res) => {
     res.render('homeheader')
 })
 
+//khcdbhdsh
 app.get('/wishlist', (req, res) => {
     if (req.session.isLoggedin == true){
         
@@ -159,9 +159,6 @@ app.get("/add-to-wl/:course", async (req, res) => {
     if(req.session.isLoggedin){
         
         courseid = req.params.course
-        
-        
-        
         user2 = req.session.user
         
         wishlist = user2.wishlist
@@ -169,13 +166,18 @@ app.get("/add-to-wl/:course", async (req, res) => {
         
         if(ind == -1){
             wishlist.push(courseid)
+        } else{
+            return res.send({message:"Already in Wishlist"})
         }
 
         if(user2.purchased.indexOf(courseid) == -1){
         
         await userSchema.findByIdAndUpdate(user2._id,{wishlist:wishlist},{new:true}).then(()=>{
-                    console.log("Added To Wishlist")
-                    res.redirect("/coursedescpage/"+courseid)
+                    // console.log("Added To Wishlist")
+                    setTimeout(()=>{
+                        res.send({message:"Added To Wishlist"})
+                    },[2000])
+
                 }
             )}
         
@@ -317,9 +319,6 @@ app.get('/manage-courses',(req, res) => {
 app.get('/admin-profile',(req, res) => {
     return res.render('admin-profile');
 })
-app.get('/forgotPassword',(req, res) => {
-    return res.render('forgotPassword');
-})
 
 app.get('/manage-user/users', async (req, res) => {
     const users = await userSchema.find({});
@@ -369,55 +368,22 @@ app.get('/manage-user/query/:id', async (req, res) => {
 
 })
 
-// app.post('/Create', async (req, res) => {
-//     const email = req.body.name;
-//     const password = req.body.password;
-
-//     userSchema.findOne({ email:email }).then((user)=>{
-//         console.log(user)
-//         if(!user){
-
-//         }
-//         userSchema.findByIdAndUpdate(user._id, { password: password }).then(()=>{
-//             console.log('Password Changed')
-//             res.redirect('login')
-//     })
-//     })
-// })  
-
-// app.get('/Create' , async(req , res)=>{
-//     res.render('register');
-// })
-
 app.post('/Create', async (req, res) => {
-    const username = req.body.username; // Use the correct field name (username) from your form
-    const newPassword = req.body.password; // Use the correct field name (password) from your form
-    
-  
-    try {
-      // Find the user by username (or email, depending on your schema)
-      const user = await userSchema.findOne({ username: username });
-  
-      if (!user) {
-        // Handle the case where the user is not found
-        return res.status(404).json({ message: 'User not found' });
-      }
-  
-      // Update the user's password
-      user.password = newPassword;
-  
-      // Save the updated user
-      await user.save();
-  
-      
-    //   return res.redirect('/Create');
-    res.render('register');
-    } catch (error) {
-      // Handle errors (e.g., database errors)
-      console.error('Error:', error);
-      res.status(500).json({ message: 'An error occurred while resetting the password' });
-    }
-  });
+    const email = req.body.name;
+    const password = req.body.password;
+
+    userSchema.findOne({ email:email }).then((user)=>{
+        console.log(user)
+        if(!user){
+
+        }
+        userSchema.findByIdAndUpdate(user._id, { password: password }).then(()=>{
+            console.log('Password Changed')
+            res.redirect('login')
+    })
+    })
+})                     
+
 
 app.get('/coursepage/:courseid/:num', async (req, res) => {
     if(req.session.isLoggedin){
@@ -594,80 +560,88 @@ userSchema.findOne({username: cuser.username}).then((doc) => {
 })
 
 
-// app.use("/", userRoute);
+app.use("/", userRoute);
 
-app.post('/submit',  async(req, res) => {
+app.post('/submit',  (req, res,next) => {
     
-    const full_name = req.body.fullname;
+    const full_name = req.body.full_name;
     const username = req.body.username;
     const email = req.body.email;
-    const role = req.body.userType;
-    // const pno = req.body.phno
+    const role = req.body.role;
+    const pno = req.body.phno
     const password = req.body.password;
-    console.log(req.body);
-    // const confirm_password = req.body.confirm_password;
+    const confirm_password = req.body.confirm_password;
    
 
    
     if (role == 'user') {    
        
-        const user = await userSchema.findOne({username :username});
-        console.log(user);
-        if(user){
-            console.log("firsr");
-            // console.log(user);
-            return res.status(404).send({ message: 'Username is already taken'});
+        teacherSchema.findOne({$or:[{email: email},{username:username}]}).then((teachercollection) => {
+
+            if(!teachercollection){
+                userSchema.findOne({$or:[{email: email},{username:username}]}).then((usercollection) => {
+                    if (usercollection){
+                if(usercollection.email === email){
+                console.log("Email Already in use")
+                return res.redirect('/register')}
+                
+                else 
+                 console.log("Username already in use")
+                        return res.redirect('/register')}
+
+            else {
+                const person = new userSchema({
+                    username: username,
+                    fullname: full_name,
+                    email: email,
+                    password: password,
+                    phone: pno
+                  });
+                  person.save();
+                  res.redirect("/login");
+                 
+            }
+        })
         }
-        const newUser = new userSchema({
-            fullname: full_name,
-            username: username,
-            email: email,
-            password: password
-          });
-        
-          // Save the user object to the database
-          newUser.save()
-            .then(savedUser => {
-              console.log('User saved:', savedUser);
-              // You can send a response here or perform additional actions
-            })
-            .catch(error => {
-              console.error('Error saving user:', error);
-              // Handle the error appropriately
-            });
-            return res.status(200).send({message : "User saved successfully "});
-            return res.redirect('/')
+
+        return res.redirect('/register')
+    
+    
+    })
+        // userSchema.findOne({username:username}).then((usercollection) => {
+        //     if(usercollection){
+        //         console.log("Username already in use")
+        //         return res.redirect("/register");
+        //     }}).catch((err) => {
+        //         console.log(err);
+        //       });
     }
 
     else {
-        const user = await teacherSchema.findOne({username :username});
-        console.log("f" + user);
-        if(user){
-            console.log("here");
-            return res.status(404).send({ message: 'Username is already taken'});
-        }
-        const newUser = new teacherSchema({
-            fullname: full_name,
-            username: username,
-            email: email,
-            password: password
-          });
-        
-          // Save the user object to the database
-          newUser.save()
-            .then(savedUser => {
-              console.log('User saved:', savedUser);
-              // You can send a response here or perform additional actions
-            })
-            .catch(error => {
-              console.error('Error saving user:', error);
-              // Handle the error appropriately
-            });
-            console.log("here");
 
-            return res.status(200).send({message : "User saved successfully"});
+        teacherSchema.findOne({$or:[{email: email},{username:username}]}).then((teachercollection) => {
+            // if (teachercollection){
+            //     if(teachercollection.email === email){
+            //     console.log("Email Already in use")
+            //     return res.redirect('/register')}
+                
+            //     else 
+            //      console.log("Username already in use")
+            //      return res.redirect('/register')}
 
 
+                const teacher = new teacherSchema({
+                    fullname: full_name,
+                    username: username,
+                    email: email,
+                    password: password,
+                    phone: pno
+                  });
+                  teacher.save();
+                  res.redirect("/login");
+
+
+        });
 
     }}
 )
@@ -675,22 +649,19 @@ app.post('/submit',  async(req, res) => {
 
 app.post('/login', (req, res) => {
     
-    const username = req.body.username;
+    const username = req.body.name;
     const password = req.body.password;
-    const role = req.body.userType;
-    console.log(req.body);
+    const role = req.body.role;
+
     if(role == 'admin'){
         req.session.admin = true
         res.redirect('admin')
     }
     if (role == 'user') {
-        console.log("first");
         userSchema.findOne({username: username}).then((usercollection) => {
             if (!usercollection) {
                 console.log("Invalid Username")
-                // return res.render('./login.ejs', { error: 'Wrong Password.', user: null });
-                console.log("second");
-                return res.status(404).send({message : "user not found"})
+                return res.render('./login.ejs', { error: 'Wrong Password.', user: null });
             } else {
                 
                 if(usercollection.password === password) {
@@ -701,20 +672,16 @@ app.post('/login', (req, res) => {
                 
 
                 console.log(req.session)
-                return res.status(200).send({message : "login successfully "});
-
                 return req.session.save((err) => {
-                // console.log(err);
-                    
-                
+                console.log(err);
+            
+                return res.redirect("/");
                   });
-                //   return res.status(200).send({message : "login successfully "});
             
                 }
                 else{
                     console.log("Wrong Password");
-                    return res.status(404).send({mesage : "password is wrong"});
-                    // return res.render('./login.ejs', { error: 'Wrong Password.', user: null });
+                    return res.render('./login.ejs', { error: 'Wrong Password.', user: null });
 
                 }
             }
@@ -737,13 +704,12 @@ app.post('/login', (req, res) => {
                 req.session.user = teachercollection;
                 
                 console.log(req.session)
-                return res.status(200).send({message : "login successfully "});
-                // return req.session.save((err) => {
-                // console.log(err);
-                // return res.redirect("/");
-                //   });
+                return req.session.save((err) => {
+                console.log(err);
+                return res.redirect("/");
+                  });
             
-                 }
+                }
                 else{
                     console.log("Wrong Password");
                     return res.render('./login.ejs', { error: 'Wrong Password.', user: null });
