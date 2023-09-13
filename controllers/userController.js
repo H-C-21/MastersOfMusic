@@ -1,7 +1,7 @@
 const teacherSchema = require('../models/teacher.js');
 const userSchema = require('../models/user.js');
 const courses = require('../models/course.js');
-
+const contactSchema = require('../models/contact.js');
 
 
 exports.register = async (req, res, next) => {
@@ -193,7 +193,7 @@ exports.query = async(req , res) =>{
             message: message,
           });
           await contact.save();  
-          return res.render('homepage');
+          return res.redirect('/');
     }
     catch(error){
             console.log(`Error while query ${error}`)
