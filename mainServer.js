@@ -154,14 +154,10 @@ app.get("/spotlight", async (req, res) => {
         }
 })
 
-
 app.get("/add-to-wl/:course", async (req, res) => {
     if(req.session.isLoggedin){
         
         courseid = req.params.course
-        
-        
-        
         user2 = req.session.user
         
         wishlist = user2.wishlist
@@ -169,13 +165,18 @@ app.get("/add-to-wl/:course", async (req, res) => {
         
         if(ind == -1){
             wishlist.push(courseid)
+        } else{
+            return res.send({message:"Already in Wishlist"})
         }
 
         if(user2.purchased.indexOf(courseid) == -1){
         
         await userSchema.findByIdAndUpdate(user2._id,{wishlist:wishlist},{new:true}).then(()=>{
-                    console.log("Added To Wishlist")
-                    res.redirect("/coursedescpage/"+courseid)
+                    // console.log("Added To Wishlist")
+                    setTimeout(()=>{
+                        res.send({message:"Added To Wishlist"})
+                    },[2000])
+
                 }
             )}
         
