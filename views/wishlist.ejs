@@ -15,8 +15,9 @@
       let currcount = '<%= user.wishlist.length %>'
 
       function deleteHandler(id,title){
+        console.log(id)
         // event.preventDefault();
-        // console.log(id)
+      
         fetch(`/remove-wishlist/${id}`,{
           method: 'POST',
           headers: {
@@ -190,6 +191,7 @@
       let currcoun2 = '<%= user.wishlist.length %>'
       if(currcoun2 == 0){
         document.getElementById('empty-cart').removeAttribute('hidden');
+        //bkhcdwkh gvsmcdsh
       }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
