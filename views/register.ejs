@@ -160,7 +160,7 @@
       document.querySelector("#signup-btn").addEventListener("click", () => {
         const usernameRegex = /^[a-zA-Z]+$/;
         const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-        const passwordRegex = /^[A-Za-z\d]{8,}$/;
+        const passwordRegex = /^(?=.*\d)(?=.*[A-Z])(?!.*[^a-zA-Z0-9@#$^+=])$/;
         const fullname = document.querySelector("#signup-fullname").value;
         const username = document.querySelector("#signup-username").value;
         const email = document.querySelector("#signup-email").value;
@@ -194,10 +194,17 @@
               }).showToast();
           return;
         }
+         if(password.length < 8 || password.length > 15){
+          Toastify({
+              text: "Please enter password of length atleast 8 and atmost 15 ",
+              backgroundColor: "red",
+            }).showToast();
+        return;
+        }
         if (!password.match(passwordRegex)) {
         
         Toastify({
-              text: "Please enter a Strong Password  ",
+              text: "Please enter atleast one capital letter one special letter and one numeric digit",
               backgroundColor: "red",
             }).showToast();
         return;
