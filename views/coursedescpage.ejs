@@ -16,6 +16,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Cabin&family=Lobster&family=Montserrat:ital,wght@1,100&family=Oswald:wght@300;400&family=Oxygen:wght@300;700&family=Prompt:wght@600&family=Quicksand:wght@300&family=Righteous&family=Secular+One&family=Tilt+Prism&display=swap" rel="stylesheet">
 
     <link rel = "stylesheet" href = "/css/coursedescpage.css">
+    <script src="/js/coursepage.js"> </script>
+
     <title><%= course.title %></title>
 </head>
 <body>
@@ -61,7 +63,7 @@
                 <div class="col-lg-4">
                     <div class="course-leftbar">
                         <div class="inner">
-                            <div class="card d-none d-lg-block" style="width: 20rem; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+                            <div class="card d-none d-lg-block" style="width: 21rem; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
                                 <img src='<%= course.imageUrl %>' class="card-img-top" alt="Card image cap">
 
                               <a href="/coursepage">
@@ -71,12 +73,10 @@
                                 <div class="card-body">
                                   <h5 class="card-title prc" style="color: black;"><p style="color: black;">Price:</p> <p style="color: black;">$ <%=course.price %> </p></h5>
                                   <p class="card-text" style="color: black; "><%= course.description %></p>
-                                  <a href="/checkout/<%= course._id %>" class="btn btn-dark">Buy This Course</a>
-                                  
-                                 
-                                  
-                                    <a href="/add-to-wl/<%= course._id %>" class="btn btn-dark">Add to Wishlist</a>
-                                    
+                                <div class="d-flex justify-content-between">
+                                    <a href="/checkout/<%= course._id %>" class="btn btn-dark">Buy This Course</a>
+                                    <a onclick="return AddToWishlist('<%=course._id %>')" class="btn btn-dark" id="wlbutton">Add to Wishlist</a>
+                                </div>
                                     
 
                                         
